@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocFix — make any document submission-ready</title>
+  <meta name="description" content="Upload a photo, signature or PDF, tell us the destination's requirements, and get a measured, submission-ready file — processed privately in your browser." />
+  <meta name="theme-color" content="#2f5fe0" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f5fe0'/%3E%3Cpath d='M9 12c4-3.5 10-3.5 14 0M23 20c-4 3.5-10 3.5-14 0' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M10.5 16h11' stroke='white' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/pages/styles.css" />
+  <script>
+    // Apply the saved theme before paint to avoid a flash of the wrong mode.
+    (function () {
+      try {
+        var m = localStorage.getItem('docfix.theme');
+        if (m !== 'dark' && m !== 'light') m = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = m;
+      } catch (e) { document.documentElement.dataset.theme = 'light'; }
+    })();
+  </script>
+  <script type="module">
+    import { startRouter } from './src/router.js';
+    window.addEventListener('DOMContentLoaded', startRouter);
+  </script>
+</head>
+<body>
+  <header class="topbar"><div class="container" id="nav"></div></header>
+  <main id="page"></main>
+  <footer class="foot"><div class="container" id="foot"></div></footer>
+  <noscript><div style="padding:40px;text-align:center">DocFix needs JavaScript enabled. All processing runs locally in your browser — no files are sent to a server.</div></noscript>
+</body>
+</html>

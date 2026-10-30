@@ -1,0 +1,20 @@
+# DocFix - Netlify config
+# Everything is static (index.html + src/). No build step, no backend needed.
+# The optional /api/interpreter proxy lives on a Node server in another
+# directory; if you want to host it, add a separate function/edge route.
+[build]
+  publish = "."
+
+# SPA fallback: any unknown path (like #/fix handled client-side) serves index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
